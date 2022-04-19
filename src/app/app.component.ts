@@ -7,64 +7,90 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'calculator-app';
+  input: string = '';
+  result: string = '';
 
-  currentNumber = '0';
-  firstOperand = null;
-  operator = null;
-  waitForSecondNumber = false;
+  
+  public getNumber(num: string) {
+    console.log(num);
+    if (num == ".") {
+      if (this.input != "") {
 
-  //getNumber equation to get the current number
-  public getNumber(v:string) {
-    console.log(v);
-    if(this.waitForSecondNumber) {
-      this.currentNumber = v;
-      this.waitForSecondNumber = false;
-    } else {
-      this.currentNumber === '0'? this.currentNumber = v: this.currentNumber += v;
+        const lastNum = this.getLastOperand()
+        console.log(lastNum.lastIndexOf("."))
+        if (lastNum.lastIndexOf(".") >= 0) return;
+      }
+  }
+
+  if (num == "0") {
+    if (this.input == "") {
+      return;
+    }
+    const PrevKey = this.input[this.input.length - 1];
+    if (PrevKey === '/' || PrevKey === '*' || PrevKey === '-' || PrevKey === '+') {
+      return;
     }
   }
 
-  //doCalculation method that defines the operand to be used
-  private doCalculation(op , secondOp){
-    switch (op){
-      case '+':
-      return this.firstOperand += secondOp; 
-      case '-': 
-      return this.firstOperand -= secondOp; 
-      case '*': 
-      return this.firstOperand *= secondOp; 
-      case '/': 
-      return this.firstOperand /= secondOp; 
-      case '=':
-      return secondOp;
-    }
-  }
-
-  //define the method that will put it all together
-  public getOperation(op: string){
-    console.log(op);
-
-    if(this.firstOperand === null){
-      this.firstOperand = Number(this.currentNumber);
-
-    }else if(this.operator){
-      const result = this.doCalculation(this.operator , Number(this.currentNumber))
-      this.currentNumber = String(result);
-      this.firstOperand = result;
-    }
-    this.operator = op;
-    this.waitForSecondNumber = true;
-
-    console.log(this.firstOperand);
-
-  }
-//clear method for the c button
-
-public clear(){
-  this.currentNumber = '0';
-  this.firstOperand = null;
-  this.operator = null;
-  this.waitForSecondNumber = false;
+  this.input = this.input + num
+  this.calcAnswer();
 }
 
+
+getLastOperand() {
+  let pos: number;
+  console.log(this.input)
+  pos = this.input.toString().lastIndexOf("+")
+  if (this.input.toString().lastIndexOf("-") > pos) pos = this.input.lastIndexOf("-")
+  if (this.input.toString().lastIndexOf("*") > pos) pos = this.input.lastIndexOf("*")
+  if (this.input.toString().lastIndexOf("/") > pos) pos = this.input.lastIndexOf("/")
+  console.log('Last ' + this.input.substr(pos + 1))
+  return this.input.substr(pos + 1)
 }
+
+
+getOperation(op: string) {
+
+  //Do not allow operators more than once
+  const lastKey = this.input[this.input.length - 1];
+  if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+') {
+    return;
+  }
+
+  this.input = this.input + op
+  this.calcAnswer();
+}
+
+
+
+clear() {
+  this.result = '';
+  this.input = '';
+}
+
+calcAnswer() {
+  let formula = this.input;
+
+  let lastKey = formula[formula.length - 1];
+
+  if (lastKey === '.') {
+    formula = formula.substr(0, formula.length - 1);
+  }
+
+  lastKey = formula[formula.length - 1];
+
+  if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+' || lastKey === '.') {
+    formula = formula.substr(0, formula.length - 1);
+  }
+
+  console.log("Formula " + formula);
+  this.result = eval(formula);
+}
+
+getAnswer() {
+  this.calcAnswer();
+  this.input = this.result;
+  if (this.input == "0") this.input = "";
+}
+}
+
