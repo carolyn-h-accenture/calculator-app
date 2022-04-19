@@ -5,22 +5,22 @@
   </div>
   <div class="keypad">
     <button class="clear" value="all-clear">C</button>
-    <button class="operator" value="/">/</button>
+    <button type="button" (click) = "getOperation('/')" class="operator" value="/">/</button>
 
     <button class="btn" type="button" (click)="getNumber('7')"  value="7">7</button>
     <button class="btn" type="button" (click)="getNumber('8')"value="8">8</button>
     <button class="btn" type="button" (click)="getNumber('9')"value="9">9</button>
-    <button class="operator" value="*">*</button>
-    
+    <button type="button" (click) = "getOperation('*')" class="operator" value="*">*</button>
+
     <button class="btn" type="button" (click)="getNumber('4')"value="4">4</button>
     <button class="btn" type="button" (click)="getNumber('5')"value="5">5</button>
     <button class="btn" type="button" (click)="getNumber('6')"value="6">6</button>
-    <button class="operator" value="-">-</button>
+    <button type="button" (click) = "getOperation('-')" class="operator" value="-">-</button>
 
     <button class="btn" type="button" (click)="getNumber('1')"value="1">1</button>
     <button class="btn" type="button" (click)="getNumber('2')"value="2">2</button>
     <button class="btn" type="button" (click)="getNumber('3')" value="3">3</button>
-    <button class="operator">+</button>
+    <button type="button" (click) = "getOperation('+')" class="operator" value="+">+</button>
 
     <button class="btn-wide" type="button" (click)="getNumber('0')"value="0">0</button>
     <button class="equals" value="=">=</button>
