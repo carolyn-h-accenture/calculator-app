@@ -1,3 +1,24 @@
+.calculator {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+}
+
+.calculator-screen {
+    width: 100%;
+    font-size: 5rem;
+    height: 80px;
+    border: none;
+    background-color: #252525;
+    color: #fff;
+    text-align: right;
+    padding-right: 20px;
+    padding-left: 10px;
+}
 
 .maindisplay {
     background: lightgrey;
@@ -8,12 +29,14 @@
     font-family: Courier, monospace;
     overflow: auto;
 }
+
 .subdisplay {
     border-bottom: 1px solid black;
     height: 150px;
     font-size: 2rem;
     overflow: auto;
 }
+
 .calculator-screen {
     background: lightgrey;
     height: 150px;
@@ -24,42 +47,50 @@
     overflow: auto;
 
 }
+
 .keypad {
     height: 300px;
 }
-.btn {
+
+.btn{
     margin: 0;
     width: 25%;
     height: 20%;
-    background: whitesmoke;
-    color: black;
+    background: rgb(112, 111, 111);
+    color: white;
     padding: 5%;
     font-size: 2rem;
     text-align: center;
     cursor: pointer;
 }
-.operator {
-    margin: 0;
-    width: 25%;
-    height: 20%;
-    background: whitesmoke;
-    color: black;
-    padding: 5%;
-    font-size: 2rem;
-    text-align: center;
-    cursor: pointer;
+
+.operator,
+.equals  {
+margin: 0;
+width: 25%;
+height: 20%;
+background: rgb(245, 181, 4);
+color: white;
+padding: 5%;
+font-size: 2rem;
+text-align: center;
+cursor: pointer;
 }
-.btn-wide {
+
+
+.btn-wide,
+.clear {
     margin: 0;
     width: 75%;
     height: 20%;
-    background: whitesmoke;
-    color: black;
+    background: rgb(112, 111, 111);
+    color: whitesmoke;
     padding: 5%;
     font-size: 2rem;
     text-align: center;
     cursor: pointer;
 }
+
 .one-line {
     display: inline-block;
 }
